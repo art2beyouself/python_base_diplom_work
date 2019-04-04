@@ -25,12 +25,12 @@ class DragonDrone(Dron):
         self.move_at(self.get_near_target())
 
     def get_near_target(self):
-        my_dict = {}
+        dict_by_distance = {}
         for asteroid in self.asteroids:
-            my_dict[asteroid] = self.distance_to(asteroid)
-        sorted_my_dict = sorted(my_dict.items(), key=lambda kv: kv[1])
+            dict_by_distance[asteroid] = self.distance_to(asteroid)
+        dict_by_distance = sorted(dict_by_distance.items(), key=lambda kv: kv[1])
 
-        for asteroid in sorted_my_dict:
+        for asteroid in dict_by_distance:
             if asteroid[0].payload > 0:
                 return asteroid[0]
         else:
