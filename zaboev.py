@@ -23,7 +23,9 @@ class DragonDrone(Dron):
         for asteroid in self.asteroids:
             targets[asteroid] = self.distance_to(asteroid)
         targets = dict(sorted(targets.items(), key=lambda targets: targets[1]))
-
+        #TODO при недогрузке на астеройде реализовать взаимосвязь между расстоянием до ближайшего астеройда и
+        #TODO расстоянием до базы (если расстояние до ближайшего астеройда больше чем до базы, а свободного места мало,
+        #TODO то летим на базу)
         for target, distance in targets.items():
             if target.payload > 0:
                 if self.free_space > 10:
