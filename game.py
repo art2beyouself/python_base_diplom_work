@@ -9,4 +9,5 @@ from zaboev import DragonDrone
 if __name__ == '__main__':
     scene = SpaceField()
     d = DragonDrone()
+
     scene.go()
