@@ -8,6 +8,8 @@ from zaboev import DragonDrone
 
 if __name__ == '__main__':
     scene = SpaceField()
-    d = DragonDrone()
+
+    for drone in range(5):
+        d = RedWings()
 
     scene.go()
