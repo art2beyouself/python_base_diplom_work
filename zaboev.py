@@ -66,38 +66,36 @@ class RedWings(Dron):
 
     def get_near_target(self):
         targets = {}
-
+        self.chosen_target = None
         for asteroid in self.asteroids:
             targets[asteroid] = self.distance_to(asteroid)
         targets = dict(sorted(targets.items(), key=lambda targets: targets[1]))
 
-        self.chosen_target = self.my_mathership
-
         for target, distance in targets.items():
-                if target.payload > 0:
-                    if self.is_empty:
-                        self.chosen_target = target
-                    elif self.is_full:
+            self.chosen_target = self.my_mathership
+            if target.payload > 0:
+                if self.is_empty:
+                    self.chosen_target = target
+                elif self.is_full:
+                    self.chosen_target = self.my_mathership
+                    break
+                elif self.payload <= 70:
+                    self.chosen_target = target
+                elif self.payload > 70:
+                    #print(round(self.distance_to(self.my_mathership)), round(distance))
+                    if self.distance_to(self.my_mathership) < distance:
                         self.chosen_target = self.my_mathership
                         break
-                    elif self.payload <= 70:
-                        self.chosen_target = target
-                    elif self.payload > 70:
-                        print(round(self.distance_to(self.my_mathership)), round(distance))
-                        if self.distance_to(self.my_mathership) < distance:
-                            self.chosen_target = self.my_mathership
-                            break
-                        else:
-                            self.chosen_target = target
                     else:
-                        self.chosen_target = self.my_mathership
-                        break
+                        self.chosen_target = target
+                else:
+                    self.chosen_target = self.my_mathership
+                    break
 
-                    if self.chosen_target != self.my_mathership and self.chosen_target not in busy_asteroids:
-                        busy_asteroids.append(self.chosen_target)
-                        break
-                        #return self.chosen_target
+                if self.chosen_target != self.my_mathership and self.chosen_target not in busy_asteroids:
+                    busy_asteroids.append(self.chosen_target)
+                    break
         else:
-            return self.chosen_target
+            self.chosen_target = self.my_mathership
 
         return self.chosen_target
