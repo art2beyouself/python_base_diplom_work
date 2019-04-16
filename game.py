@@ -7,6 +7,8 @@ from zaboev import DragonDrone
 
 
 if __name__ == '__main__':
-    scene = SpaceField()
+    scene = SpaceField(
+        speed=5,
+    )
     d = DragonDrone()
     scene.go()
