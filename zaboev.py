@@ -99,3 +99,40 @@ class RedWings(Dron):
             self.chosen_target = self.my_mathership
 
         return self.chosen_target
+
+
+class TruckerDron(RedWings):
+    def get_near_target(self):
+        targets = {}
+        self.chosen_target = None
+        for asteroid in self.asteroids:
+            targets[asteroid] = self.distance_to(asteroid)
+        targets = dict(sorted(targets.items(), key=lambda targets: targets[1], reverse=True))
+
+        for target, distance in targets.items():
+            self.chosen_target = self.my_mathership
+            if target.payload > 0:
+                if self.is_empty:
+                    self.chosen_target = target
+                elif self.is_full:
+                    self.chosen_target = self.my_mathership
+                    break
+                elif self.payload <= 70:
+                    self.chosen_target = target
+                elif self.payload > 70:
+                    if self.distance_to(self.my_mathership) < distance:
+                        self.chosen_target = self.my_mathership
+                        break
+                    else:
+                        self.chosen_target = target
+                else:
+                    self.chosen_target = self.my_mathership
+                    break
+
+                if self.chosen_target != self.my_mathership and self.chosen_target not in busy_asteroids:
+                    busy_asteroids.append(self.chosen_target)
+                    break
+        else:
+            self.chosen_target = self.my_mathership
+
+        return self.chosen_target
