@@ -1,36 +1,27 @@
 import random
-
 from astrobox.core import Dron
 
 busy_asteroids = []
 
 
 class RedWings(Dron):
-    names = ['eagle', 'kite', 'hawk', 'Jay', 'peregrine']
+    names = ['eagle', 'kite', 'hawk', 'Jay', 'peregrine', 'sparrow']
 
     def __init__(self, coord=None):
         super(RedWings, self).__init__(coord=coord)
-        self.name = random.choice(RedWings.names)
+        self.name = RedWings.names.pop(random.randint(0, len(RedWings.names)-1))
         self.chosen_target = None
         self.dst_full = 0
         self.dst_part = 0
         self.dst_empty = 0
 
-    def report(self):
-        # TODO оформить отчет
+    def print_report(self):
         total_distance = 0
         for asteroid in self.asteroids:
             total_distance += self.distance_to(asteroid)
-        print(self.name)
-        print(f'Общая дистанция от базы до всех астеройдов (с учетом того, что лететь придётся дважды) = '
-              f'{round(total_distance)*2}.')
-        print(f'Дистанции: полным={round(self.dst_full)}, '
+        print(f' --- \n {self.name} \n Пройдено: полным={round(self.dst_full)}, '
               f'пустым={round(self.dst_empty)}, '
               f'частично загруженным={round(self.dst_part)}.')
-
-        print('Выбранная цель=', self.chosen_target)
-        print('Занятые астеройды=', busy_asteroids)
-        print('---')
 
     def on_born(self):
         target = self.get_near_target()
@@ -48,12 +39,14 @@ class RedWings(Dron):
 
     def on_stop_at_mathership(self, mathership):
         self.unload_to(mathership)
-        self.report()
 
     def on_unload_complete(self):
         target = self.get_near_target()
         self.calc_metric()
-        self.move_at(target)
+        if target != self.my_mathership:
+            self.move_at(target)
+        else:
+            self.print_report()
 
     def calc_metric(self):
         dst = self.distance_to(self.chosen_target)
@@ -82,7 +75,6 @@ class RedWings(Dron):
                 elif self.payload <= 70:
                     self.chosen_target = target
                 elif self.payload > 70:
-                    #print(round(self.distance_to(self.my_mathership)), round(distance))
                     if self.distance_to(self.my_mathership) < distance:
                         self.chosen_target = self.my_mathership
                         break
