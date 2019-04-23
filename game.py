@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# pip install astrobox
+# pip install -r requirements.txt
+# TODO обрати внимание на изменение версии библиотеки astrobox!!!
+#  надо обновить, пайчарм сам это предложит - соглашайся. Если нет - руками обновить.
 
 from astrobox.space_field import SpaceField
 from zaboev import RedWings
