@@ -10,6 +10,8 @@ from zaboev import RedWings
 if __name__ == '__main__':
     scene = SpaceField(
         speed=5,
+        asteroids_count=20,
+        # TODO увеличил количество астероидов - собрали не всё...
     )
 
     for drone in range(5):
