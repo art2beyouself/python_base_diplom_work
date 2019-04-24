@@ -1,1 +1,1 @@
-astrobox==0.1.3
+astrobox==1.0.2
