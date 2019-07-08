@@ -5,16 +5,15 @@
 #  надо обновить, пайчарм сам это предложит - соглашайся. Если нет - руками обновить.
 
 from astrobox.space_field import SpaceField
-from zaboev import RedWings
+from zaboev import BirdWings
 
 if __name__ == '__main__':
     scene = SpaceField(
         speed=5,
-        asteroids_count=20,
-        # TODO увеличил количество астероидов - собрали не всё...
+        asteroids_count=15,
     )
 
     for drone in range(5):
-        d = RedWings()
+        d = BirdWings()
 
     scene.go()
