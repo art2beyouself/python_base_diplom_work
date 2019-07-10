@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 
 # pip install -r requirements.txt
-# TODO обрати внимание на изменение версии библиотеки astrobox!!!
-#  надо обновить, пайчарм сам это предложит - соглашайся. Если нет - руками обновить.
 
 from astrobox.space_field import SpaceField
+# TODO - Переименуй свой класс дрона по шаблону [Фамилия]Drone
 from zaboev import FlyWings
 
 if __name__ == '__main__':
     scene = SpaceField(
-        speed=5,
+        speed=3,
         asteroids_count=10,
     )
 
@@ -17,3 +16,6 @@ if __name__ == '__main__':
         d = FlyWings()
 
     scene.go()
+
+# TODO - Выведи статистику общую по всем дронам.
+# Второй этап: зачёт!
