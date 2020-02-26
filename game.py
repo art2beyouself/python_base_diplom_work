@@ -4,7 +4,7 @@
 
 from astrobox.space_field import SpaceField
 # TODO - Переименуй свой класс дрона по шаблону [Фамилия]Drone
-from zaboev import FlyWings
+from zaboev import ZaboevDrone
 
 if __name__ == '__main__':
     scene = SpaceField(
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     )
 
     for drone in range(5):
-        d = FlyWings()
+        d = ZaboevDrone()
 
     scene.go()
 
