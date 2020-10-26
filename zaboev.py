@@ -185,9 +185,11 @@ class HarvestStrategy(Strategy):
 
 
 class BaseDrone(Drone):
+    # TODO - Максимальное количество дронов - 7 (theme.MAX_DRONES_AT_TEAM). Тогда уж и задать столько имён
     NAMES = ['eagle', 'kite', 'hawk', 'peregrine', 'sparrow']
 
     def __init__(self, coord=None):
+        # TODO - Почему в параметрах coord? Откуда это? В родительском классе просто кварги принимаются
         super().__init__(coord=coord)
         self.name = BaseDrone.NAMES.pop()
         self.dst_full = 0

@@ -12,9 +12,12 @@ NUMBER_OF_DRONES = 5
 
 if __name__ == '__main__':
     scene = SpaceField(
-        speed=3,
-        asteroids_count=10,
+        speed=5,
+        asteroids_count=20,
     )
     team_1 = [ZaboevDrone() for _ in range(NUMBER_OF_DRONES)]
     team_2 = [DrillerDrone() for _ in range(NUMBER_OF_DRONES)]
     scene.go()
+
+
+# Победы 10/10 - Чистая победа!
